@@ -45,9 +45,66 @@ const menuItemHtml = menuArray
 document.getElementById("menu-items").innerHTML = menuItemHtml;
 
 // when plus button is clicked, new section "Your order" appears at the bottom
+
+let order = {}; //track ordered items
+
+//handle button click
 document.querySelectorAll(".btn").forEach((button) => {
   button.addEventListener("click", (e) => {
     const itemName = e.target.dataset.name;
-    console.log("itemName");
+    const item = menuArray.find((i) => i.name === itemName);
+
+    // order[item.name] = item; //add to order list
+    if (order[itemName]) {
+      order[itemName].quantity += 1;
+    } else {
+      order[itemName] = { ...item, quantity: 1 };
+    }
+
+    renderOrder(); //update order section
   });
+});
+
+//render order section
+function renderOrder() {
+  const orderSection = document.getElementById("order-section");
+  const orderList = document.getElementById("order-list");
+  const orderTotal = document.getElementById("order-total");
+  const completeOrderBtn = document.getElementById("complete-order-btn");
+
+  //show hidden section
+  const hasItems = Object.keys(order).length > 0;
+  orderSection.style.display = hasItems ? "block" : "none";
+  completeOrderBtn.style.display = hasItems ? "block" : "none";
+
+  //render order items
+  orderList.innerHTML = Object.values(order)
+    .map(
+      (item) => `<div class="order-item">
+    <span class="item-line">${item.name} × ${item.quantity}</span>
+    <span>$${item.price}</span>
+    <button class="remove-btn" data-name="${item.name}">Remove</button>
+    </div>`
+    )
+    .join("");
+
+  //remove button logic
+  document.querySelectorAll(".remove-btn").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const name = e.target.dataset.name;
+      delete order[name];
+      renderOrder();
+    });
+  });
+
+  //calculte total
+  const total = Object.values(order).reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+  orderTotal.textContent = "Total price: $" + `${total}`;
+}
+
+document.getElementById("complete-order-btn").addEventListener("click", () => {
+  alert("Order completed! (Next step goes here)");
 });

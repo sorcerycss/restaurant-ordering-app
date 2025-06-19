@@ -24,3 +24,11 @@ body {
   justify-content: center;
   flex: 1;
 }
+
+.order-section {
+  display: none;
+}
+
+.complete-order-btn {
+  display: none;
+}
