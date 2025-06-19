@@ -28,15 +28,15 @@ import { menuArray } from "./data.js";
 const menuItemHtml = menuArray
   .map((item) => {
     return `
-    <div class="menu-item">
+    <div class="menu-item menu-item__underline">
     <img src="./img/${item.name}.png" alt="${item.name}" class="item-img">
     <div class="item-info">
-    <p>${item.name}</p>
-    <p>${item.ingredients}</p>
-    <p>$${item.price}</p>
+    <p class="item-title">${item.name}</p>
+    <p class="item-desc">${item.ingredients}</p>
+    <p class="item-price">$${item.price}</p>
     </div>
     <div class="item-btn">
-    <button class="btn" data-name='${item.name}'>+</button>
+    <button class="btn item-btn" data-name='${item.name}'>+</button>
     </div>
     </div>`;
   })
@@ -105,6 +105,34 @@ function renderOrder() {
   orderTotal.textContent = "Total price: $" + `${total}`;
 }
 
+//payment modal
 document.getElementById("complete-order-btn").addEventListener("click", () => {
-  alert("Order completed! (Next step goes here)");
+  const modal = document.getElementById("modal");
+
+  modal.innerHTML = `<div class="modal-inner">
+  <form class="payment-form" id="payment-form">
+        <h2>Enter card details</h2>
+        <input type="text" name="name" placeholder="Enter your name" required />
+        <input
+          type="text"
+          name="card"
+          placeholder="Enter card number"
+          required
+        />
+        <input type="text" name="cvv" placeholder="Enter CVV" required />
+        <div class="payment-form-btn">
+          <button class="payment-btn">Pay</button>
+        </div>
+      </form>
+      </div>`;
+  modal.style.display = "block";
+
+  document.getElementById("payment-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    modal.style.display = "none";
+    const orderSection = document.getElementById("order-section");
+    orderSection.innerHTML = `Thanks! Your Order is on its way!`;
+    const completeOrderBtn = document.getElementById("complete-order-btn");
+    completeOrderBtn.style.display = "none";
+  });
 });
