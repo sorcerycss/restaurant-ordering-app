@@ -51,7 +51,7 @@ let order = {}; //track ordered items
 //handle button click
 document.querySelectorAll(".btn").forEach((button) => {
   button.addEventListener("click", (e) => {
-    const itemName = e.target.dataset.name;
+    const itemName = e.currentTarget.dataset.name;
     const item = menuArray.find((i) => i.name === itemName);
 
     // order[item.name] = item; //add to order list
