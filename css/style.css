@@ -9,9 +9,10 @@ body {
   font-family: "Smythe", sans-serif;
 }
 
-img {
+/* img {
   max-width: 100%;
-}
+  display: block;
+} */
 
 .header {
   background: url(/img/burger-bg-img.png);
@@ -25,6 +26,8 @@ img {
   padding: 1em 2em;
 }
 
+/* === Typography === */
+
 .title {
   font-size: 39px;
   font-weight: 400;
@@ -36,45 +39,71 @@ img {
   margin-top: 0;
 }
 
+/* === MENU ITEMS === */
+
 .menu-item {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
+.item-img {
+  margin-right: 1.938em;
+}
+
 .item-info {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
   flex: 1;
 }
 
-.item-info::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: #d2d2d2;
+.menu-item__underline {
+  border-bottom: 1px solid #d2d2d2;
 }
 
 .item-title {
   font-size: 1.75rem;
+  align-self: flex-start;
+  margin-bottom: auto;
 }
 
 .item-desc {
   font-size: 1rem;
+  align-self: flex-start;
+  margin-top: 8.8px;
+  margin-bottom: 8px;
 }
 
 .item-price {
   font-size: 1.25rem;
+  align-self: flex-start;
+  margin-top: auto;
 }
 
-.item-btn {
-  background: none;
+
+/* Button */
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #DEDEDE;
   border-radius: 50%;
-  padding: 0.25em 0.5em;
-  font-size: 2rem;
+  background-color: white;
   color: #3c3c3c;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+  font-weight: 100;
+  line-height: 1;
+  padding: 0;
+}
+
+.btn span {
+  display: inline-block;
+  transform: translateY(-2.25px);
 }
 
 .order-section {
@@ -85,7 +114,9 @@ img {
   display: none;
 }
 
-/* payment form modal */
+/* === Your Order === */
+
+/* === Modal === */
 
 .modal {
   display: none;
@@ -105,3 +136,5 @@ img {
   margin: 0 auto;
   width: 50%;
 }
+
+/* === Confirmation === */

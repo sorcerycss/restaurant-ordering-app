@@ -1,17 +1,17 @@
 // ***Retaurant Ordering App***
 // Stage 1 (DONE!)
 // --- three items on the menu (pizza, hamburger, beer)
-// Stage 2
+// Stage 2 (DONE!)
 // --- when plus button is clicked, new section "Your order" appears at the bottom;
 // this should show whatever is added to the order with its price;
 // the option to remove it;
 // total price of everything ordered;
 // and a "complete order" button
-// Stage 3
+// Stage 3 (DONE!)
 // --- when "complete order" button is clicked,
 // user should be presented with payment modal (three input fields and "pay" button);
 // if a user clicks "pay" and some fields are empty, a propmt should pop up;
-// Stage 4
+// Stage 4 (DONE!)
 // --- when user has completed the form and click "pay"
 // the "Your order" section is replaced
 // by message "Thanks, user! Your order is on its way!"
@@ -36,7 +36,7 @@ const menuItemHtml = menuArray
     <p class="item-price">$${item.price}</p>
     </div>
     <div class="item-btn">
-    <button class="btn item-btn" data-name='${item.name}'>+</button>
+    <button class="btn" data-name="${item.name}"><span>+</span></button>
     </div>
     </div>`;
   })
